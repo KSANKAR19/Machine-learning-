@@ -1,0 +1,54 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Dataset
+X = np.array([
+    [2, 65, 70, 6],
+    [3, 70, 75, 7],
+    [1, 60, 65, 5],
+    [4, 80, 85, 8],
+    [2, 68, 72, 6]
+])
+
+print("Original Dataset:\n", X)
+
+# Step 1: Mean Centering
+mean = np.mean(X, axis=0)
+X_centered = X - mean
+print("\nMean:\n", mean)
+print("\nMean Centered Data:\n", X_centered)
+
+# Step 2: Covariance Matrix
+cov_matrix = np.cov(X_centered.T)
+print("\nCovariance Matrix:\n", cov_matrix)
+
+# Step 3: Eigenvalues and Eigenvectors
+eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
+print("\nOriginal Eigenvalues:\n", eigenvalues)
+print("\nOriginal Eigenvectors:\n", eigenvectors)
+
+# Step 4: Sort Eigenvalues and Eigenvectors (Descending)
+idx = np.argsort(eigenvalues)[::-1]
+eigenvalues = eigenvalues[idx]
+eigenvectors = eigenvectors[:, idx]
+
+print("\nSorted Eigenvalues:\n", eigenvalues)
+print("\nSorted Eigenvectors:\n", eigenvectors)
+
+# Step 5: First Principal Component
+pc1 = eigenvectors[:, 0]
+print("\nFirst Principal Component (PC1):\n", pc1)
+
+# Step 6: PC1 Scores
+pc1_scores = np.dot(X_centered, pc1)
+print("\nPC1 Scores:\n", pc1_scores)
+
+# Step 7: Scree Plot
+components = np.arange(1, len(eigenvalues) + 1)
+plt.figure()
+plt.plot(components, eigenvalues, marker='o')
+plt.xlabel("Principal Component Number")
+plt.ylabel("Eigenvalue")
+plt.title("Scree Plot")
+plt.grid(True)
+plt.show()
