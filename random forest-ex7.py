@@ -91,3 +91,57 @@ plt.figure()
 plt.bar(X.columns, importances)
 plt.title("Feature Importance (Random Forest)")
 plt.show()
+
+-----------OUTPUT------------------
+Original Dataset:
+   Study_Hours Attendance Assignment Result
+0        High       Good        Yes   Pass
+1        High    Average        Yes   Pass
+2      Medium       Good        Yes   Pass
+3         Low       Poor         No   Fail
+4         Low    Average        Yes   Fail
+5      Medium    Average        Yes   Pass
+6        High       Good        Yes   Pass
+7         Low       Poor         No   Fail
+8      Medium       Good        Yes   Pass
+9        High    Average        Yes   Pass
+
+Encoded Dataset:
+    Study_Hours  Attendance  Assignment  Result
+0            0           1           1       1
+1            0           0           1       1
+2            2           1           1       1
+3            1           2           0       0
+4            1           0           1       0
+5            2           0           1       1
+6            0           1           1       1
+7            1           2           0       0
+8            2           1           1       1
+9            0           0           1       1
+
+Random Forest Model Trained Successfully
+
+Accuracy: 0.6666666666666666
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.00      0.00      0.00         1
+           1       0.67      1.00      0.80         2
+
+    accuracy                           0.67         3
+   macro avg       0.33      0.50      0.40         3
+weighted avg       0.44      0.67      0.53         3
+
+
+New Student Prediction:
+Result = Pass
+C:\Users\DELL\anaconda3\Lib\site-packages\sklearn\metrics\_classification.py:1731: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+C:\Users\DELL\anaconda3\Lib\site-packages\sklearn\metrics\_classification.py:1731: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+C:\Users\DELL\anaconda3\Lib\site-packages\sklearn\metrics\_classification.py:1731: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+
+
+
