@@ -25,10 +25,20 @@ pca = PCA(n_components=k)
 X_pca = pca.fit_transform(X_scaled)
 
 # -------- OUTPUT --------
-print("\nOriginal Data Shape:", X.shape)
-print("Reduced Data Shape:", X_pca.shape)
-print("\nReduced Data (PCA Output):")
-print(X_pca)
+Enter number of samples:  1
+Enter number of features:  1
+Enter the data row-wise:
+Sample 1:  2
+Enter number of principal components:  1
 
-print("\nExplained Variance Ratio:")
-print(pca.explained_variance_ratio_)
+Original Data Shape: (1, 1)
+Reduced Data Shape: (1, 1)
+
+Reduced Data (PCA Output):
+[[0.]]
+
+Explained Variance Ratio:
+[nan]
+C:\Users\DELL\anaconda3\Lib\site-packages\sklearn\decomposition\_pca.py:584: RuntimeWarning: invalid value encountered in divide
+  explained_variance_ = (S**2) / (n_samples - 1)
+
