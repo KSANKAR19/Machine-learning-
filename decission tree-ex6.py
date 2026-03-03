@@ -70,3 +70,19 @@ plot_tree(
 )
 plt.title("Small Decision Tree (Entropy)")
 plt.show()
+
+-------------OUTPUT----------------
+Encoded Dataset:
+    Weather  Humidity  Play
+0        1         0     0
+1        1         1     1
+2        0         0     1
+3        0         1     1
+
+Model Trained Successfully
+
+Prediction for New Sample:
+Play = No
+
+
+
