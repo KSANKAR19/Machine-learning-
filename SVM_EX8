@@ -1,0 +1,54 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, classification_report
+
+# Sample dataset (You can replace this with your CSV file)
+data = {
+    "text": [
+        "Win a free iPhone now",
+        "Hello, how are you?",
+        "Claim your lottery prize",
+        "Meeting at 10 AM tomorrow",
+        "Free entry in a contest",
+        "Let's complete the project today"
+    ],
+    "label": ["spam", "ham", "spam", "ham", "spam", "ham"]
+}
+
+df = pd.DataFrame(data)
+
+# Convert labels into numbers
+df["label"] = df["label"].map({"ham": 0, "spam": 1})
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    df["text"], df["label"], test_size=0.3, random_state=42
+)
+
+# Convert text into numerical form
+vectorizer = TfidfVectorizer()
+X_train_tfidf = vectorizer.fit_transform(X_train)
+X_test_tfidf = vectorizer.transform(X_test)
+
+# Train SVM model
+model = SVC(kernel='linear')
+model.fit(X_train_tfidf, y_train)
+
+# Predict
+y_pred = model.predict(X_test_tfidf)
+
+# Accuracy
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("\nClassification Report:\n", classification_report(y_test, y_pred))
+
+# Test with new mail
+new_mail = ["Congratulations! You won a free ticket"]
+new_mail_tfidf = vectorizer.transform(new_mail)
+prediction = model.predict(new_mail_tfidf)
+
+if prediction[0] == 1:
+    print("Spam Mail")
+else:
+    print("Not Spam Mail")
