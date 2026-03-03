@@ -3,7 +3,7 @@ from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
 # -------- USER INPUT --------
-n = int(input("Enter number of samples: "))
+n = int(input("Enter number of samples: ")) 
 m = int(input("Enter number of features: "))
 
 data = []
